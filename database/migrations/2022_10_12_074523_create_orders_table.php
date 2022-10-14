@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('set_menu_id');
+            $table->unsignedBigInteger('product_id')->nullable();
+            $table->unsignedBigInteger('set_menu_id')->nullable();
             $table->string('address');
             $table->timestamps();
         });

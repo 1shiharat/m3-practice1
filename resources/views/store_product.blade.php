@@ -1,8 +1,8 @@
-@include('header', ['title' => 'login'])
+@include('header', ['title' => 'store product'])
 
 <div>
     <div class="d-flex justify-content-between">
-        <h1>Login</h1>
+        <h1>store product</h1>
         <a href="{{ route('admin') }}">ホームへ戻る</a>
     </div>
 

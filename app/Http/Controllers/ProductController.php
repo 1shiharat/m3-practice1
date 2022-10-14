@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\SetMenu;
+use App\Models\SetMenuHaveProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,6 +65,23 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         $product->delete();
+
+        $haves = SetMenuHaveProduct::where('product_id', $product->id)->get();
+        $delete_set_menus_id = [];
+        foreach ($haves as $have) {
+            $delete_set_menus_id[] = $have->set_menu_id;
+        }
+        foreach ($delete_set_menus_id as $id) {
+            $delete_haves = SetMenuHaveProduct::where('set_menu_id', $id)->get();
+            foreach ($delete_haves as $have) {
+                $have->delete();
+            }
+            $set_menu = SetMenu::find($id);
+            $set_menu->delete();
+        }
+
+
+
         $message = '削除しました';
         return redirect(route('admin'));
     }

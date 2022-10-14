@@ -1,8 +1,8 @@
-@include('header', ['title' => 'delete-product'])
+@include('header', ['title' => 'delete set menu'])
 
 <div>
     <div class="d-flex justify-content-between">
-        <h1>delete product</h1>
+        <h1>delete set menu</h1>
         <a href="{{ route('admin') }}">ホームへ戻る</a>
     </div>
 
@@ -10,7 +10,7 @@
         <div>{{ $message }}</div>
     @endisset
 
-    <form class="border p-4" action="{{ route('delete_product', $id) }}" method="POST">
+    <form class="border p-4" action="{{ route('delete_set_menu', $id) }}" method="POST">
         @csrf
         <div>
             <h3>削除してよろしいですか？</h3>

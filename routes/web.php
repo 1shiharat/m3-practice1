@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SetMenuController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +35,12 @@ Route::post('admin/update-product/{id}', [ProductController::class, 'update'])->
 
 Route::get('admin/delete-product/{id}', [ProductController::class, 'delete_confirm'])->middleware('auth')->name('delete_product');
 Route::post('admin/delete-product/{id}', [ProductController::class, 'delete'])->middleware('auth');
+
+Route::get('admin/store-set-menu', [SetMenuController::class, 'index'])->middleware('auth')->name('store_set_menu');
+Route::post('admin/store-set-menu', [SetMenuController::class, 'store'])->middleware('auth');
+
+Route::get('admin/update-set-menu/{id}', [SetMenuController::class, 'update_form'])->middleware('auth')->name('update_set_menu');
+Route::post('admin/update-set-menu/{id}', [SetMenuController::class, 'update'])->middleware('auth');
+
+Route::get('admin/delete-set-menu/{id}', [SetMenuController::class, 'delete_confirm'])->middleware('auth')->name('delete_set_menu');
+Route::post('admin/delete-set-menu/{id}', [SetMenuController::class, 'delete'])->middleware('auth');

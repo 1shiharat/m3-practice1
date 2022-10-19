@@ -1,7 +1,10 @@
 @include('header', ['title' => 'admin'])
 
 <div>
-    <h1>Admin</h1>
+    <div class="d-flex justify-content-between">
+        <h1>Admin</h1>
+        <a href="{{ route('logout') }}">ログアウト</a>
+    </div>
     @isset($message)
         <div>{{ $message }}</div>
     @endisset

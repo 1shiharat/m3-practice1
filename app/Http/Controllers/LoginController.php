@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -25,10 +25,10 @@ class LoginController extends Controller
         return back()->withErrors(['message' => 'アカウントまたはパスワードが正しくありません']);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
-
+        $request->session()->flush();
         return redirect(route('login'));
     }
 }

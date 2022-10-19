@@ -27,6 +27,8 @@ Route::get('admin', [AdminController::class, 'index'])->middleware('auth')->name
 Route::get('login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('login', [LoginController::class, 'check'])->middleware('guest');
 
+Route::get('logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
+
 Route::get('admin/store-product', [ProductController::class, 'index'])->middleware('auth')->name('store_product');
 Route::post('admin/store-product', [ProductController::class, 'store'])->middleware('auth');
 

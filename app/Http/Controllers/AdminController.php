@@ -23,6 +23,6 @@ class AdminController extends Controller
         }
         // dd($products, $set_menus, $have_products);
 
-        return view('admin', compact('products', 'set_menus', 'have_products'));
+        return response(view('admin', compact('products', 'set_menus', 'have_products')))->withHeaders(['Cache-Control' => 'no-store']);
     }
 }

@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\SetMenu;
 use Illuminate\Http\Request;
 
+use Symfony\Component\HttpFoundation\Response;
+
 class ApiController extends Controller
 {
     public function items(Request $request)
@@ -32,10 +34,11 @@ class ApiController extends Controller
         $query = SetMenu::query();
         if (isset($request->shop_id)) {
             $query->where('shop_id');
+            $sets = $query->get();
+            return response()->json($sets);
         }
 
-        $sets = $query->get();
-        return response()->json($sets);
+        return response()->json('', Response::HTTP_NOT_FOUND);
     }
 
     public function order(Request $request)
@@ -46,6 +49,8 @@ class ApiController extends Controller
                 'set_menu_id' => $request->sets_id,
                 'address' => $request->address
             ]);
+            return response()->json('', Response::HTTP_CREATED);
         }
+        return response()->json('', Response::HTTP_NOT_FOUND);
     }
 }
